@@ -14,7 +14,10 @@ import br.ce.wcaquino.utils.DataUtils;
 
 public class LocacaoService {
 	
-	public Locacao alugarFilme(Usuario usuario, Filme filme) {
+	public Locacao alugarFilme(Usuario usuario, Filme filme) throws Exception {
+		if(filme.getEstoque() == 0){
+			throw new Exception("Filme sem estoque!");
+		}
 		Locacao locacao = new Locacao();
 		locacao.setFilme(filme);
 		locacao.setUsuario(usuario);
@@ -31,17 +34,5 @@ public class LocacaoService {
 		
 		return locacao;
 	}
-	@Test
-	public void teste() {
-		//cenario
-		LocacaoService service = new LocacaoService();
-		Usuario usuario = new Usuario("Usuario 1");
-		Filme filme = new Filme("Filme 1", 2, 5.0);
-		//acao
-		Locacao locacao = service.alugarFilme(usuario, filme);
-		//verificacao //new Date passa a data atual
-		Assert.assertTrue(locacao.getValor() == 5.0);
-		Assert.assertTrue(DataUtils.isMesmaData(locacao.getDataLocacao(), new Date()));
-		Assert.assertTrue(DataUtils.isMesmaData(locacao.getDataRetorno(), DataUtils.obterDataComDiferencaDias(1)));
-	}
+
 }
