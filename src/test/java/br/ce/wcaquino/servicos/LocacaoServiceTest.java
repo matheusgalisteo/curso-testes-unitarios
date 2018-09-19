@@ -46,7 +46,7 @@ public class LocacaoServiceTest {
 		error.checkThat(isMesmaData(locacao.getDataRetorno(), obterDataComDiferencaDias(1)), is(true));
 	}
 	
-	@Test(expected = FilmeSemEstoqueException.class)
+	@Test(expected = FilmeSemEstoqueException.class) //Forma elegante Serve quando o que nos importa é a exceção 
 	public void testLocacao_filmeSemEstoque() throws Exception{
 		//cenario
 		LocacaoService service = new LocacaoService();
@@ -57,7 +57,7 @@ public class LocacaoServiceTest {
 		service.alugarFilme(usuario, filme);
 	}
 	
-	@Test
+	@Test //Forma Robusta Serve para maior controle da execução
 	public void testLocacao_usuarioVazio() throws FilmeSemEstoqueException{
 		//cenario
 		LocacaoService service = new LocacaoService();
