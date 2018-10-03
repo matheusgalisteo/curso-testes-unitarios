@@ -10,7 +10,11 @@ import static org.junit.Assert.assertThat;
 
 import java.util.Date;
 
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ErrorCollector;
@@ -24,16 +28,23 @@ import br.ce.wcaquino.exceptions.LocadoraException;
 
 public class LocacaoServiceTest {
 
+	private LocacaoService service;
+	//definicao do contador
+	
 	@Rule
 	public ErrorCollector error = new ErrorCollector();
 	
 	@Rule
 	public ExpectedException exception = ExpectedException.none();
 	
+	@Before
+	public void setup(){
+		service = new LocacaoService();
+	}
+	
 	@Test
 	public void testeLocacao() throws Exception {
-		//cenario
-		LocacaoService service = new LocacaoService();
+		//cenario		
 		Usuario usuario = new Usuario("Usuario 1");
 		Filme filme = new Filme("Filme 1", 1, 5.0);
 		
@@ -49,7 +60,6 @@ public class LocacaoServiceTest {
 	@Test(expected = FilmeSemEstoqueException.class) //Forma elegante Serve quando o que nos importa é a exceção 
 	public void testLocacao_filmeSemEstoque() throws Exception{
 		//cenario
-		LocacaoService service = new LocacaoService();
 		Usuario usuario = new Usuario("Usuario 1");
 		Filme filme = new Filme("Filme 2", 0, 4.0);
 		
@@ -60,7 +70,6 @@ public class LocacaoServiceTest {
 	@Test //Forma Robusta Serve para maior controle da execução
 	public void testLocacao_usuarioVazio() throws FilmeSemEstoqueException{
 		//cenario
-		LocacaoService service = new LocacaoService();
 		Filme filme = new Filme("Filme 2", 1, 4.0);
 		
 		//acao
