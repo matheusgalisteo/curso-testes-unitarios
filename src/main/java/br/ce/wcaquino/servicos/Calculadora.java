@@ -8,20 +8,15 @@ public class Calculadora {
 		return a + b;
 	}
 
-	public int subtracao(int a, int b) {
+	public int subtrair(int a, int b) {
 		return a - b;
 	}
 
-	public int divisao(int a, int b) throws NaoPodeDividirPorZeroException {
-		if(b == 0){
+	public int divide(int a, int b) throws NaoPodeDividirPorZeroException {
+		if(b == 0) {
 			throw new NaoPodeDividirPorZeroException();
 		}
 		return a / b;
 	}
-
-	public int divisaoPorZero(int a, int b) {
-		return 0;
-	}
-
 
 }
