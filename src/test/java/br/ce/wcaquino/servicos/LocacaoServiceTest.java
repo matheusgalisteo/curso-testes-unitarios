@@ -96,7 +96,7 @@ public class LocacaoServiceTest {
 		//acao
 		service.alugarFilme(usuario, null);
 	}
-	
+	/* METODOS DE TESTE SUPRIMIDOS PELA CLASSE CALCULOVALORLOCACAOTESTE
 	@Test
 	public void devePagar75PctNoFilme3() throws FilmeSemEstoqueException, LocadoraException{
 		//cenario
@@ -157,7 +157,7 @@ public class LocacaoServiceTest {
 		
 		//verificacao
 		assertThat(resultado.getValor(), is(14.0));
-	}
+	}*/
 	
 	@Test
 	public void deveDevolverNaSegundaAoAlugarNoSabado() throws FilmeSemEstoqueException, LocadoraException{
